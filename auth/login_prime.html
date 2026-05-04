@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Library</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<!-- Loader -->
+<div class="loader-screen">
+    <div class="loader">
+        <img src="../pciu.png" alt="PCIU Logo">
+    </div>
+</div>
+
+<div class="login-container">
+    <p class="help-text">
+        To learn more, visit our website:
+        <a href="https://www.portcity.edu.bd/">www.portcity.edu.bd</a>
+    </p>
+
+    <form action="login.php" method="POST">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <button type="submit" class="login-btn">Login</button>
+        <a href="#" class="forgot-link" data-tooltip="Contact register office for solution">
+            Forgot Your Password?
+        </a>
+    </form>
+
+    <div class="note">
+        <strong>Don't have a password yet?</strong>
+        <p>If you don't have a password yet, stop by the register office the next time you're in the university. We'll happily set one up for you.</p>
+
+        <strong>Don't have a library card?</strong>
+        <p>If you don't have a library card, stop by the central library to sign up.</p>
+
+        <p>Already have an account? <a href="#" id="goToLogin">Go back to Login</a></p>
+    </div>
+</div>
+
+<script>
+// Loader
+window.addEventListener("load", () => {
+    setTimeout(() => { document.querySelector(".loader-screen").style.display = "none"; }, 1500);
+});
+
+// Example: Redirect on "Go back to Login" click with loader
+document.getElementById("goToLogin").addEventListener("click", function(e){
+    e.preventDefault();
+    document.querySelector(".loader-screen").style.display = "flex";
+    setTimeout(() => {
+        window.location.href = "login_prime.html"; // you can adjust to any page
+    }, 1500);
+});
+</script>
+
+</body>
+</html>

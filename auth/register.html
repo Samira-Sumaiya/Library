@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - PCIU Library</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+<!-- Loader Animation -->
+<div class="loader-screen">
+    <div class="loader">
+        <img src="pciu.png" alt="PCIU Logo">
+    </div>
+</div>
+
+<div class="register-container">
+    <p class="help-text">
+        To learn more, visit our website:
+        <a href="https://www.portcity.edu.bd/">www.portcity.edu.bd</a>
+    </p>
+
+    <form id="registerForm" method="POST" action="register.php">
+        <label>First Name</label>
+        <input type="text" name="first_name" placeholder="First Name" required>
+
+        <label>Last Name</label>
+        <input type="text" name="last_name" placeholder="Last Name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <label>University ID</label>
+        <input type="text" name="university_id" placeholder="University ID" required>
+
+        <label>Role</label>
+        <select name="role" required>
+            <option value="student">Student</option>
+            <option value="staff">Staff</option>
+        </select>
+
+        <button type="submit" class="register-btn">Register</button>
+    </form>
+</div>
+
+<div class="note">
+    <strong>Already have an account?</strong>
+    <p>Go back to <a href="login_prime.html" id="loginLink">Login</a>.</p>
+
+    <strong>Need a library card?</strong>
+    <p>Stop by the central library to sign up.</p>
+</div>
+
+<script>
+// Loader functionality
+const loaderScreen = document.querySelector(".loader-screen");
+const form = document.getElementById("registerForm");
+const loginLink = document.getElementById("loginLink");
+
+// Hide loader on page load after 0.5s
+window.addEventListener("load", () => {
+    setTimeout(() => { loaderScreen.style.display = "none"; }, 500);
+});
+
+// Show loader when form is submitted
+form.addEventListener("submit", () => {
+    loaderScreen.style.display = "flex";
+});
+
+// Show loader when clicking "Login" link
+loginLink.addEventListener("click", (event) => {
+    event.preventDefault(); // prevent immediate navigation
+    loaderScreen.style.display = "flex";
+    setTimeout(() => {
+        window.location.href = loginLink.getAttribute("href");
+    }, 1000); // wait 1 second to show loader
+});
+</script>
+
+</body>
+</html>

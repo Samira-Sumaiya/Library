@@ -1,0 +1,181 @@
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { 
+    font-family: Arial, sans-serif; 
+    background-color: #fdfdfd; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    min-height: 100vh; 
+    padding: 30px 20px; 
+}
+
+/* Loader */
+.loader-screen { 
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    background: #f4f4f4; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 9999; 
+}
+
+.loader { 
+    position: relative; 
+    width: 150px; 
+    height: 150px; 
+}
+
+.loader img { 
+    position: absolute; 
+    top: 50%; left: 50%; 
+    transform: translate(-50%, -50%); 
+    height: 100px; 
+    width: auto; 
+    z-index: 2; 
+}
+
+.loader::before { 
+    content: ""; 
+    position: absolute; 
+    top: 50%; left: 50%; 
+    width: 150px; height: 150px; 
+    border-radius: 50%; 
+    border: 10px solid rgb(5,48,240); 
+    border-top: 10px solid #0072bb; 
+    transform: translate(-50%, -50%); 
+    animation: rotate 2.5s linear infinite; 
+}
+
+@keyframes rotate { 
+    from { transform: translate(-50%, -50%) rotate(0deg); } 
+    to { transform: translate(-50%, -50%) rotate(360deg); } 
+}
+
+/* Login Container */
+.login-container { 
+    text-align: center; 
+    width: 300px; 
+    margin-bottom: 25px; 
+}
+
+.help-text { 
+    font-size: 14px; 
+    margin-bottom: 15px; 
+}
+
+.help-text a { 
+    color: navy; 
+    font-weight: bold; 
+    text-decoration: none; 
+}
+
+form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+}
+
+label { 
+    text-align: left; 
+    font-size: 14px; 
+    font-weight: bold; 
+}
+
+input[type="email"],
+input[type="password"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Forgot password tooltip */
+.forgot-link {
+    position: relative;
+    font-size: 12px;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.forgot-link::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background: #333;
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.forgot-link::before {
+    content: "";
+    position: absolute;
+    bottom: 115%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+    opacity: 0;
+    transition: opacity 0.7s ease-in;
+}
+
+.forgot-link:hover::after,
+.forgot-link:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Note section */
+.note {
+    max-width: 500px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    background-color: #faf4e6;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.note strong {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.note p {
+    margin: 4px 0 10px;
+}
+.note a {
+    color: #007bff;
+    text-decoration: none;
+}
+.note a:hover {
+    text-decoration: underline;
+}
