@@ -1,0 +1,139 @@
+/* Custom CSS for specific animations and overrides */
+
+/* Reset for consistency with Tailwind */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Loader Screen - Maintained for visual effect */
+.loader-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4; /* Using a light grey background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Smooth hide */
+}
+
+.loader-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader img {
+    z-index: 2;
+}
+
+.loader::before {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 10px solid rgba(0, 90, 156, 0.2); /* Lighter blue for base border */
+    border-top: 10px solid #005a9c; /* PCIU Blue for animating part */
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Hero Slider Animations - Custom Keyframes */
+.hero-slider {
+    position: relative;
+}
+
+.hero-slide {
+    animation: fadeLoop 15s infinite; /* Base animation */
+}
+
+/* Delay for each slide */
+.hero-slide:nth-child(1) { animation-delay: 0s; }
+.hero-slide:nth-child(2) { animation-delay: 5s; }
+.hero-slide:nth-child(3) { animation-delay: 10s; }
+
+@keyframes fadeLoop {
+    0% { opacity:0; transform: scale(1.1); }
+    5% { opacity:1; transform: scale(1); }
+    30% { opacity:1; transform: scale(1); }
+    35% { opacity:0; transform: scale(0.95); }
+    100% { opacity:0; transform: scale(0.95); }
+}
+
+
+/* Book Card Flip Animation - Enhanced for smoother transition */
+.book-card-inner {
+    transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+    position: relative; /* Ensure absolute positioning works inside */
+}
+
+.book-card-inner:hover {
+    transform: rotateY(180deg);
+}
+
+.book-front, .book-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hide the back of the element when facing away */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem; /* Consistent padding */
+    overflow: hidden;
+    border-radius: 0.5rem; /* Matches Tailwind's rounded-lg */
+}
+
+.book-front {
+    z-index: 2; /* Ensure front is on top */
+}
+
+.book-back {
+    transform: rotateY(180deg); /* Start rotated for the flip effect */
+    background: linear-gradient(145deg, #ffffff, #e0e7ff); /* Subtle gradient for the back */
+}
+
+/* Specific styling for dropdown menus to ensure proper visibility and transition with Tailwind group-hover */
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    /* Other styles are handled by Tailwind classes */
+}
+
+/* The 'group-hover:block' in HTML handles showing it */
+.group:hover .dropdown-menu {
+    display: block;
+    /* Other styles like opacity and translateY are handled by Tailwind classes */
+}
+
+/* SR-only class for accessibility labels */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

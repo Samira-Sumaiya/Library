@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCIU Central Library</title>
+<link rel="stylesheet" href="final.css">
+</head>
+<body>
+
+<!-- Loader Animation -->
+<div class="loader-screen">
+    <div class="loader">
+        <img src="pciu.png" alt="PCIU Logo">
+    </div>
+</div>
+
+<header class="header">
+  <div class="top-bar">
+    <div class="logo-title">
+      <img src="pciu.png" alt="PCIU Logo" class="logo">
+      <div class="title-text">
+        <h1>Ratnagarva Begum Ashrafunnesa Library</h1>
+        <p>Port City International University</p>
+      </div>
+    </div>
+    <div class="login-section">
+      <a href="login_prime.html" class="login-btn" id="loginBtn">LOGIN</a>
+    </div>
+  </div>
+</header>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+    <ul>
+        <li><a href="finale.html">Home</a></li>
+        <li><a href="#">Books</a></li>
+        <li><a href="#">Download</a></li>
+        <li><a href="#">About</a></li>
+    </ul>
+</div>
+
+<!-- Content -->
+<h1><center>More Info Will Be Added Soon After The Updates.</center></h1>
+<br>
+<h2><center>Stay Tuned!</center></h2>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+
+    <!-- Left Side (Links + Contact + Location) -->
+    <div class="footer-info">
+      
+      <div class="footer-column">
+        <h3>QUICK LINKS</h3>
+        <ul>
+          <li><a href="#">Press Release</a></li>
+          <li><a href="#">ICSDTIR-2021</a></li>
+          <li><a href="#">IQAC SURVEY</a></li>
+          <li><a href="#">Student Portal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>CONNECT</h3>
+        <p>01851120791<br>01773225500<br>01773225511</p>
+        <p><a href="mailto:admission@portcity.edu.bd">admission@portcity.edu.bd</a></p>
+      </div>
+
+      <div class="footer-column">
+        <h3>LOCATION</h3>
+        <p>Administrative Building (Ground Floor)<br>
+        7-14, Nikunja Housing Society,<br>
+        South Khulshi, Chattogram</p>
+      </div>
+    </div>
+
+    <!-- Right Side (Map) -->
+    <div class="footer-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14759.371442579371!2d91.8025863!3d22.359561499999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acd97f972c9cbf%3A0x8fe976105b47e2f0!2sPort%20City%20International%20University!5e0!3m2!1sen!2sbd!4v1755597692047!5m2!1sen!2sbd"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <p>© 2025 Port City International University. All Rights Reserved. Design, Development and Maintenance by <span class="highlight">ICT Cell</span></p>
+  </div>
+</footer>
+
+
+<script>
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        document.querySelector(".loader-screen").style.display = "none";
+    }, 2000);
+});
+
+document.getElementById("loginBtn").addEventListener("click", function(event) {
+    event.preventDefault(); 
+    document.querySelector(".loader-screen").style.display = "flex"; 
+    setTimeout(() => {
+        window.location.href = this.getAttribute("href");
+    }, 2000);
+});
+</script>
+
+</body>
+</html>

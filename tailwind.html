@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCIU Central Library - Home</title>
+    <!-- Tailwind CSS CDN for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS for specific animations and overrides -->
+    <link rel="stylesheet" href="tailwind.css">
+    <style>
+        /* Custom Tailwind Configuration - you would ideally put this in a tailwind.config.js */
+        :root {
+            --pciu-blue: #005a9c;
+            --pciu-light-blue: #0072bb;
+            --pciu-gray: #333;
+            --pciu-light-gray: #f4f4f4;
+            --pciu-orange: orange;
+        }
+        .bg-pciu-blue { background-color: var(--pciu-blue); }
+        .text-pciu-blue { color: var(--pciu-blue); }
+        .border-pciu-blue { border-color: var(--pciu-blue); }
+        .hover\:bg-pciu-light-blue:hover { background-color: var(--pciu-light-blue); }
+        .text-pciu-orange { color: var(--pciu-orange); }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Loader Animation - Custom styling in destiny.css -->
+    <div class="loader-screen">
+        <div class="loader">
+            <img src="pciu.png" alt="PCIU Logo" class="w-24 h-24 object-contain">
+        </div>
+    </div>
+
+    <!-- Header / Top-bar - Cleaned up and made persistent -->
+    <header class="bg-pciu-blue text-white py-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <img src="bg.png" alt="PCIU Logo" class="h-16 w-auto rounded-full shadow-lg">
+                <div class="text-center md:text-left">
+                    <h1 class="text-2xl md:text-3xl font-bold tracking-tight">Ratnagarva Begum Ashrafunnesa Library</h1>
+                    <p class="text-sm md:text-base opacity-90">Port City International University</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 w-full md:w-auto justify-center md:justify-end">
+                <form class="search-bar flex items-center bg-white rounded-full shadow-inner overflow-hidden max-w-xs md:max-w-none w-full md:w-auto" action="/search" method="get">
+                    <label for="searchInput" class="sr-only">Search the library</label>
+                    <input type="search" id="searchInput" name="q" placeholder="Search by books..." required
+                           class="flex-grow py-2 px-4 text-gray-700 outline-none border-none focus:ring-2 focus:ring-pciu-light-blue rounded-l-full">
+                    <button type="submit" class="bg-white text-pciu-blue px-4 py-2 rounded-r-full hover:bg-pciu-light-blue hover:text-white transition-colors duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    </button>
+                </form>
+                <a href="login_prime.html" id="loginBtn" class="login-btn bg-transparent text-white border-2 border-white py-2 px-6 rounded-full hover:bg-white hover:text-pciu-blue transition-all duration-300 font-semibold shadow-lg">
+                    LOGIN
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg z-40">
+        <ul class="container mx-auto px-4 flex flex-wrap justify-center md:justify-start gap-y-2 py-3">
+            <li class="relative group">
+                <a href="index.html" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 hover:text-pciu-blue rounded-lg transition-colors duration-200 font-medium">Home</a>
+            </li>
+            <li class="relative group dropdown">
+                <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 hover:text-pciu-blue rounded-lg transition-colors duration-200 font-medium flex items-center" aria-haspopup="true" aria-expanded="false">
+                    Books <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down ml-1"><path d="m6 9 6 6 6-6"/></svg>
+                </a>
+                <ul class="dropdown-menu absolute hidden group-hover:block bg-white shadow-xl rounded-lg py-2 mt-1 w-48 z-10 border border-gray-100 transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                    <li><a href="test1.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md">Textbooks</a></li>
+                    <li><a href="ebook.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md">E-Books</a></li>
+                </ul>
+            </li>
+            <li class="relative group dropdown">
+                <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 hover:text-pciu-blue rounded-lg transition-colors duration-200 font-medium flex items-center" aria-haspopup="true" aria-expanded="false">
+                    Download <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down ml-1"><path d="m6 9 6 6 6-6"/></svg>
+                </a>
+                <ul class="dropdown-menu absolute hidden group-hover:block bg-white shadow-xl rounded-lg py-2 mt-1 w-48 z-10 border border-gray-100 transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                    <li><a href="https://drive.google.com/file/d/1uJgGPKmt10RgI21_sARMFu-WWm19jaKS/view?usp=drivesdk" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md">Forms</a></li>
+                </ul>
+            </li>
+            <li class="relative group dropdown">
+                <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 hover:text-pciu-blue rounded-lg transition-colors duration-200 font-medium flex items-center" aria-haspopup="true" aria-expanded="false">
+                    About <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down ml-1"><path d="m6 9 6 6 6-6"/></svg>
+                </a>
+                <ul class="dropdown-menu absolute hidden group-hover:block bg-white shadow-xl rounded-lg py-2 mt-1 w-64 z-10 border border-gray-100 transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                    <li><a href="services.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md">Library Hours & Services</a></li>
+                    <li><a href="rule.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md">Library Rules & Regulations</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Slider / Fade Animation Loop -->
+    <div class="hero-slider relative w-full h-[500px] overflow-hidden my-6 rounded-lg shadow-xl container mx-auto">
+        <div class="hero-slide absolute inset-0 opacity-0 animate-fadeLoop">
+            <img src="l3.jpg" alt="Modern Library Interior with Students Studying" class="w-full h-full object-cover brightness-85 transform scale-100 transition-transform duration-1500 ease-in-out hover:scale-105 rounded-lg">
+        </div>
+        <div class="hero-slide absolute inset-0 opacity-0 animate-fadeLoop" style="animation-delay: 5s;">
+            <img src="l2.jpg" alt="Wide view of library aisles with many books" class="w-full h-full object-cover brightness-85 transform scale-100 transition-transform duration-1500 ease-in-out hover:scale-105 rounded-lg">
+        </div>
+        <div class="hero-slide absolute inset-0 opacity-0 animate-fadeLoop" style="animation-delay: 10s;">
+            <img src="l1.jpg" alt="Students collaborating at a library table" class="w-full h-full object-cover brightness-85 transform scale-100 transition-transform duration-1500 ease-in-out hover:scale-105 rounded-lg">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+
+        <h1 class="text-4xl font-extrabold text-center text-pciu-blue mb-12 tracking-tight">Welcome to Ratnagarva Begum Ashrafunnesa Library</h1>
+
+        <!-- New Arrivals Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-semibold text-pciu-blue mb-8 border-b-2 border-pciu-light-blue pb-2">New Arrivals</h2>
+            <div class="book-cards grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <div class="book-card w-full h-80 relative perspective-1000 cursor-pointer">
+                    <div class="book-card-inner relative w-full h-full transform-style-3d transition-transform duration-800 ease-in-out rounded-lg shadow-md hover:rotateY-180 hover:shadow-xl">
+                        <div class="book-front absolute inset-0 backface-hidden bg-white p-4 flex flex-col items-center justify-center rounded-lg shadow-inner-sm border border-gray-100">
+                            <img src="rselvam.jpg" alt="Software Engineering book cover" class="w-full h-40 object-cover rounded-md mb-3 shadow-md">
+                            <h3 class="text-lg font-semibold text-pciu-blue text-center leading-tight mb-1">Software Engineering</h3>
+                            <p class="text-sm text-gray-600 text-center">Author: Dr. R. Selvam</p>
+                        </div>
+                        <div class="book-back absolute inset-0 backface-hidden rotateY-180 bg-gradient-to-br from-white to-pciu-light-gray text-pciu-blue flex flex-col items-center justify-center p-4 text-center rounded-lg shadow-inner-md border border-gray-100">
+                            <h3 class="text-lg font-semibold mb-2">Software Engineering</h3>
+                            <p class="text-sm text-gray-700">Explore modern software development concepts.</p>
+                            <a href="#" class="mt-4 inline-block bg-pciu-blue text-white text-sm px-4 py-2 rounded-full hover:bg-pciu-light-blue transition-colors duration-300">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-card w-full h-80 relative perspective-1000 cursor-pointer">
+                    <div class="book-card-inner relative w-full h-full transform-style-3d transition-transform duration-800 ease-in-out rounded-lg shadow-md hover:rotateY-180 hover:shadow-xl">
+                        <div class="book-front absolute inset-0 backface-hidden bg-white p-4 flex flex-col items-center justify-center rounded-lg shadow-inner-sm border border-gray-100">
+                            <img src="aemhkd.jpg" alt="Advanced Engineering Mathematics book cover" class="w-full h-40 object-cover rounded-md mb-3 shadow-md">
+                            <h3 class="text-lg font-semibold text-pciu-blue text-center leading-tight mb-1">Advanced Engineering Mathematics</h3>
+                            <p class="text-sm text-gray-600 text-center">Author: H. K. Dass</p>
+                        </div>
+                        <div class="book-back absolute inset-0 backface-hidden rotateY-180 bg-gradient-to-br from-white to-pciu-light-gray text-pciu-blue flex flex-col items-center justify-center p-4 text-center rounded-lg shadow-inner-md border border-gray-100">
+                            <h3 class="text-lg font-semibold mb-2">Advanced Engineering Mathematics</h3>
+                            <p class="text-sm text-gray-700">Essential topics for engineering students.</p>
+                            <a href="#" class="mt-4 inline-block bg-pciu-blue text-white text-sm px-4 py-2 rounded-full hover:bg-pciu-light-blue transition-colors duration-300">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-card w-full h-80 relative perspective-1000 cursor-pointer">
+                    <div class="book-card-inner relative w-full h-full transform-style-3d transition-transform duration-800 ease-in-out rounded-lg shadow-md hover:rotateY-180 hover:shadow-xl">
+                        <div class="book-front absolute inset-0 backface-hidden bg-white p-4 flex flex-col items-center justify-center rounded-lg shadow-inner-sm border border-gray-100">
+                            <img src="absarsir.jpg" alt="Intel Microprocessor book cover" class="w-full h-40 object-cover rounded-md mb-3 shadow-md">
+                            <h3 class="text-lg font-semibold text-pciu-blue text-center leading-tight mb-1">Intel Microprocessor</h3>
+                            <p class="text-sm text-gray-600 text-center">Author: Albert Newton</p>
+                        </div>
+                        <div class="book-back absolute inset-0 backface-hidden rotateY-180 bg-gradient-to-br from-white to-pciu-light-gray text-pciu-blue flex flex-col items-center justify-center p-4 text-center rounded-lg shadow-inner-md border border-gray-100">
+                            <h3 class="text-lg font-semibold mb-2">Intel Microprocessor</h3>
+                            <p class="text-sm text-gray-700">Learn architecture and programming basics.</p>
+                            <a href="#" class="mt-4 inline-block bg-pciu-blue text-white text-sm px-4 py-2 rounded-full hover:bg-pciu-light-blue transition-colors duration-300">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-card w-full h-80 relative perspective-1000 cursor-pointer">
+                    <div class="book-card-inner relative w-full h-full transform-style-3d transition-transform duration-800 ease-in-out rounded-lg shadow-md hover:rotateY-180 hover:shadow-xl">
+                        <div class="book-front absolute inset-0 backface-hidden bg-white p-4 flex flex-col items-center justify-center rounded-lg shadow-inner-sm border border-gray-100">
+                            <img src="cf.jpg" alt="Computer Fundamentals book cover" class="w-full h-40 object-cover rounded-md mb-3 shadow-md">
+                            <h3 class="text-lg font-semibold text-pciu-blue text-center leading-tight mb-1">Computer Fundamentals</h3>
+                            <p class="text-sm text-gray-600 text-center">Author: Pradeep K. Sinha, Preti Sinha</p>
+                        </div>
+                        <div class="book-back absolute inset-0 backface-hidden rotateY-180 bg-gradient-to-br from-white to-pciu-light-gray text-pciu-blue flex flex-col items-center justify-center p-4 text-center rounded-lg shadow-inner-md border border-gray-100">
+                            <h3 class="text-lg font-semibold mb-2">Computer Fundamentals</h3>
+                            <p class="text-sm text-gray-700">Know about fundamentals of Computer.</p>
+                            <a href="#" class="mt-4 inline-block bg-pciu-blue text-white text-sm px-4 py-2 rounded-full hover:bg-pciu-light-blue transition-colors duration-300">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Books Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-semibold text-pciu-blue mb-8 border-b-2 border-pciu-light-blue pb-2">Upcoming Books</h2>
+            <div class="book-cards grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <div class="book-card w-full h-80 relative perspective-1000 cursor-pointer">
+                    <div class="book-card-inner relative w-full h-full transform-style-3d transition-transform duration-800 ease-in-out rounded-lg shadow-md hover:rotateY-180 hover:shadow-xl">
+                        <div class="book-front absolute inset-0 backface-hidden bg-white p-4 flex flex-col items-center justify-center rounded-lg shadow-inner-sm border border-gray-100">
+                            <img src="hack.jpg" alt="Hacking book cover" class="w-full h-40 object-cover rounded-md mb-3 shadow-md">
+                            <h3>Hacking</h3>
+                            <p>Author: John Erickson</p>
+                        </div>
+                        <div class="book-back absolute inset-0 backface-hidden rotateY-180 bg-gradient-to-br from-white to-pciu-light-gray text-pciu-blue flex flex-col items-center justify-center p-4 text-center rounded-lg shadow-inner-md border border-gray-100">
+                            <h3 class="text-lg font-semibold mb-2">Hacking</h3>
+                            <p class="text-sm text-gray-700">The Art Of Exploitation</p>
+                            <a href="#" class="mt-4 inline-block bg-pciu-blue text-white text-sm px-4 py-2 rounded-full hover:bg-pciu-light-blue transition-colors duration-300">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-card w-full h-80 relative perspective-1000 cursor-pointer">
+                    <div class="book-card-inner relative w-full h-full transform-style-3d transition-transform duration-800 ease-in-out rounded-lg shadow-md hover:rotateY-180 hover:shadow-xl">
+                        <div class="book-front absolute inset-0 backface-hidden bg-white p-4 flex flex-col items-center justify-center rounded-lg shadow-inner-sm border border-gray-100">
+                            <img src="tpw.jpg" alt="The Python Workbook cover" class="w-full h-40 object-cover rounded-md mb-3 shadow-md">
+                            <h3>The Python Workbook</h3>
+                            <p>Author: Ben Stephenson</p>
+                        </div>
+                        <div class="book-back absolute inset-0 backface-hidden rotateY-180 bg-gradient-to-br from-white to-pciu-light-gray text-pciu-blue flex flex-col items-center justify-center p-4 text-center rounded-lg shadow-inner-md border border-gray-100">
+                            <h3 class="text-lg font-semibold mb-2">The Python Workbook</h3>
+                            <p class="text-sm text-gray-700">Practice Python exercises efficiently.</p>
+                            <a href="#" class="mt-4 inline-block bg-pciu-blue text-white text-sm px-4 py-2 rounded-full hover:bg-pciu-light-blue transition-colors duration-300">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-card w-full h-80 relative perspective-1000 cursor-pointer">
+                    <div class="book-card-inner relative w-full h-full transform-style-3d transition-transform duration-800 ease-in-out rounded-lg shadow-md hover:rotateY-180 hover:shadow-xl">
+                        <div class="book-front absolute inset-0 backface-hidden bg-white p-4 flex flex-col items-center justify-center rounded-lg shadow-inner-sm border border-gray-100">
+                            <img src="piansic.jpg" alt="Programming In ANSI C book cover" class="w-full h-40 object-cover rounded-md mb-3 shadow-md">
+                            <h3>Programming In ANSI C</h3>
+                            <p>Author: E. Balaguruswamy</p>
+                        </div>
+                        <div class="book-back absolute inset-0 backface-hidden rotateY-180 bg-gradient-to-br from-white to-pciu-light-gray text-pciu-blue flex flex-col items-center justify-center p-4 text-center rounded-lg shadow-inner-md border border-gray-100">
+                            <h3 class="text-lg font-semibold mb-2">Programming In ANSI C</h3>
+                            <p class="text-sm text-gray-700">Step-by-step learning for beginners.</p>
+                            <a href="#" class="mt-4 inline-block bg-pciu-blue text-white text-sm px-4 py-2 rounded-full hover:bg-pciu-light-blue transition-colors duration-300">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-card w-full h-80 relative perspective-1000 cursor-pointer">
+                    <div class="book-card-inner relative w-full h-full transform-style-3d transition-transform duration-800 ease-in-out rounded-lg shadow-md hover:rotateY-180 hover:shadow-xl">
+                        <div class="book-front absolute inset-0 backface-hidden bg-white p-4 flex flex-col items-center justify-center rounded-lg shadow-inner-sm border border-gray-100">
+                            <img src="ast.jpg" alt="Computer Networks book cover" class="w-full h-40 object-cover rounded-md mb-3 shadow-md">
+                            <h3>Computer Networks</h3>
+                            <p>Author: Andrew S. Tanenbaum</p>
+                        </div>
+                        <div class="book-back absolute inset-0 backface-hidden rotateY-180 bg-gradient-to-br from-white to-pciu-light-gray text-pciu-blue flex flex-col items-center justify-center p-4 text-center rounded-lg shadow-inner-md border border-gray-100">
+                            <h3 class="text-lg font-semibold mb-2">Computer Networks</h3>
+                            <p class="text-sm text-gray-700">Networking concepts and protocols explained.</p>
+                            <a href="#" class="mt-4 inline-block bg-pciu-blue text-white text-sm px-4 py-2 rounded-full hover:bg-pciu-light-blue transition-colors duration-300">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Library Staff Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-semibold text-pciu-blue mb-8 border-b-2 border-pciu-light-blue pb-2 text-center">Meet Our Dedicated Staff Members</h2>
+            <div class="staff-cards grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 justify-items-center">
+                <div class="staff-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-transform duration-300 hover:-translate-y-2 text-center border border-gray-100 max-w-[200px]">
+                    <img src="deputy.jpg" alt="Frhana Noor Chowdhury, Deputy Librarian" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-pciu-light-blue shadow-md">
+                    <h3 class="text-lg font-bold text-pciu-blue mb-1">Ms. Frhana Noor Chowdhury</h3>
+                    <p class="text-sm text-gray-700">Deputy Librarian</p>
+                </div>
+                <div class="staff-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-transform duration-300 hover:-translate-y-2 text-center border border-gray-100 max-w-[200px]">
+                    <img src="e1.jpg" alt="Tabassum Ahmed, Executive" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-pciu-light-blue shadow-md">
+                    <h3 class="text-lg font-bold text-pciu-blue mb-1">Tabassum Ahmed</h3>
+                    <p class="text-sm text-gray-700">Executive</p>
+                </div>
+                <div class="staff-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-transform duration-300 hover:-translate-y-2 text-center border border-gray-100 max-w-[200px]">
+                    <img src="e2.jpg" alt="Nure Alam, Executive" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-pciu-light-blue shadow-md">
+                    <h3 class="text-lg font-bold text-pciu-blue mb-1">Nure Alam</h3>
+                    <p class="text-sm text-gray-700">Executive</p>
+                </div>
+                <div class="staff-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-transform duration-300 hover:-translate-y-2 text-center border border-gray-100 max-w-[200px]">
+                    <img src="oa.jpg" alt="Rasel Mandi, Office Assistant" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-pciu-light-blue shadow-md">
+                    <h3 class="text-lg font-bold text-pciu-blue mb-1">Rasel Mandi</h3>
+                    <p class="text-sm text-gray-700">Office Assistant</p>
+                </div>
+                <div class="staff-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-transform duration-300 hover:-translate-y-2 text-center border border-gray-100 max-w-[200px]">
+                    <img src="at.jpg" alt="Al Amin Paik, Attendant" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-pciu-light-blue shadow-md">
+                    <h3 class="text-lg font-bold text-pciu-blue mb-1">Al Amin Paik</h3>
+                    <p class="text-sm text-gray-700">Attendant</p>
+                </div>
+                <div class="staff-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-transform duration-300 hover:-translate-y-2 text-center border border-gray-100 max-w-[200px]">
+                    <img src="oa2.jpg" alt="Mohabbat Ali, Office Assistant" class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-pciu-light-blue shadow-md">
+                    <h3 class="text-lg font-bold text-pciu-blue mb-1">Mohabbat Ali</h3>
+                    <p class="text-sm text-gray-700">Office Assistant</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Info -->
+        <section class="bg-gradient-to-r from-pciu-blue to-pciu-light-blue text-white p-8 rounded-xl shadow-lg mb-16">
+            <h2 class="text-3xl font-semibold mb-6 border-b-2 border-white pb-2 text-center">Contact Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
+                <div>
+                    <p class="mb-2"><strong>Email:</strong> <a href="mailto:admission@portcity.edu.bd" class="text-white hover:underline">admission@portcity.edu.bd</a></p>
+                    <p class="mb-2"><strong>Phone:</strong> +880 23333 69877 / +880 23333 69899</p>
+                    <p class="mb-2"><strong>Mobile:</strong> +880 18511 20791 / +880 17732 25500 / +880 17732 25511</p>
+                </div>
+                <div>
+                    <p><strong>Address:</strong><br>Administrative Building (Ground Floor)<br>7-14, Nikunja Housing Society,<br>South Khulshi, Chattogram</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-10">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start gap-8">
+            <div class="footer-info flex flex-col md:flex-row gap-8 md:gap-16 flex-grow">
+                <div class="footer-column flex-1 min-w-[150px]">
+                    <h3 class="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider">QUICK LINKS</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-200">Press Release</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-200">ICSDTIR-2021</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-200">IQAC SURVEY</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-200">Student Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column flex-1 min-w-[150px]">
+                    <h3 class="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider">CONNECT</h3>
+                    <p class="text-gray-300 mb-2">01851120791<br>01773225500<br>01773225511</p>
+                    <p><a href="mailto:admission@portcity.edu.bd" class="text-gray-300 hover:text-white transition-colors duration-200">admission@portcity.edu.bd</a></p>
+                </div>
+                <div class="footer-column flex-1 min-w-[150px]">
+                    <h3 class="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider">LOCATION</h3>
+                    <p class="text-gray-300">Administrative Building (Ground Floor)<br>
+                    7-14, Nikunja Housing Society,<br>
+                    South Khulshi, Chattogram</p>
+                </div>
+            </div>
+            <div class="footer-map flex-shrink-0 w-full md:w-1/3 lg:w-1/4">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118231.25997258384!2d91.73880598685145!3d22.37341399732168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ad28a4c0a525f9%3A0xc3f8e583c4b9e27c!2sPort%20City%20International%20University!5e0!3m2!1sen!2sbd!4v1622359218228!5m2!1sen!2sbd"
+                title="Location of Port City International University"
+                width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-lg shadow-md"></iframe>
+            </div>
+        </div>
+        <div class="footer-bottom bg-gray-800 text-gray-500 text-center py-4 mt-8 text-sm">
+            <p>© 2025 Port City International University. All Rights Reserved. Design, Development and Maintenance by <span class="text-pciu-orange font-bold">ICT Cell</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript merged directly into the HTML file
+
+        // Loader Screen
+        const loaderScreen = document.querySelector(".loader-screen");
+
+        // Hide the loader after a delay
+        // Using a class for visibility to allow CSS transitions
+        window.addEventListener("load", () => { // Use window.onload for the loader to ensure all assets are loaded
+            setTimeout(() => {
+                if (loaderScreen) {
+                    loaderScreen.classList.add("hidden");
+                }
+            }, 2000); // 2 seconds delay
+        });
+
+
+        // Animated placeholder for the search input
+        const searchInput = document.getElementById("searchInput");
+        const placeholderText = "Search by books, author...";
+        let index = 0;
+        let isDeleting = false; // To control backspace effect
+
+        function animatePlaceholder() {
+            if (!searchInput) return; // Exit if searchInput is not found
+
+            if (!isDeleting) {
+                searchInput.setAttribute("placeholder", placeholderText.slice(0, index));
+                index++;
+                if (index > placeholderText.length) {
+                    isDeleting = true;
+                    setTimeout(animatePlaceholder, 1000); // Pause before deleting
+                    return;
+                }
+            } else {
+                searchInput.setAttribute("placeholder", placeholderText.slice(0, index));
+                index--;
+                if (index < 0) {
+                    isDeleting = false;
+                    index = 0;
+                    setTimeout(animatePlaceholder, 500); // Pause before typing again
+                    return;
+                }
+            }
+            setTimeout(animatePlaceholder, isDeleting ? 70 : 150); // Faster deleting
+        }
+
+        animatePlaceholder();
+
+        // Login button loading effect
+        const loginBtn = document.getElementById("loginBtn");
+        if (loginBtn) {
+            loginBtn.addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent immediate navigation
+                if (loaderScreen) {
+                    loaderScreen.classList.remove("hidden"); // Show loader again
+                }
+                const targetUrl = this.getAttribute("href");
+                setTimeout(() => {
+                    window.location.href = targetUrl; // Navigate after loader
+                }, 1000); // Shortened delay for login navigation
+            });
+        }
+
+        // Dropdown functionality for accessibility (optional, Tailwind handles basic hover)
+        // This script can be expanded for keyboard navigation support for dropdowns if needed.
+        const dropdownToggles = document.querySelectorAll('.dropdown > a');
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (event) => {
+                if (window.innerWidth < 768) { // Only activate on small screens for click
+                    event.preventDefault();
+                    const parentLi = toggle.closest('li.dropdown');
+                    const dropdownMenu = parentLi.querySelector('.dropdown-menu');
+                    if (dropdownMenu) {
+                        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+                        toggle.setAttribute('aria-expanded', !isExpanded);
+                        if (isExpanded) {
+                            dropdownMenu.classList.add('hidden');
+                        } else {
+                            dropdownMenu.classList.remove('hidden');
+                        }
+                    }
+                }
+            });
+        });
+
+        // Close dropdowns if clicking outside on mobile
+        document.addEventListener('click', (event) => {
+            if (window.innerWidth < 768) {
+                dropdownToggles.forEach(toggle => {
+                    const parentLi = toggle.closest('li.dropdown');
+                    if (!parentLi.contains(event.target)) {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        const dropdownMenu = parentLi.querySelector('.dropdown-menu');
+                        if (dropdownMenu) {
+                            dropdownMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

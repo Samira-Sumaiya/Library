@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PCIU Central Library - Textbooks</title>
+<link rel="icon" href="logo.png" />
+<style>
+:root {
+  --primary:#005a9c; --secondary:#0072bb; --light:#f4f4f4; --dark:#2c2c2c; --text:#333;
+  --radius:12px; --transition:0.3s ease; --shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Tahoma,sans-serif;color:var(--text);background:#fff;}
+.loader-screen{position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;display:flex;justify-content:center;align-items:center;z-index:9999;}
+.loader{position:relative;width:120px;height:120px;}
+.loader img{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:80px;width:auto;z-index:2;}
+.loader::before{content:"";position:absolute;top:50%;left:50%;width:120px;height:120px;border-radius:50%;border:8px solid var(--primary);border-top:8px solid var(--secondary);transform:translate(-50%,-50%);animation:spin 1.5s linear infinite;}
+@keyframes spin{from{transform:translate(-50%,-50%) rotate(0deg);}to{transform:translate(-50%,-50%) rotate(360deg);} }
+.header{background:var(--primary);color:#fff;padding:10px 0;}
+.top-bar{max-width:1200px;margin:auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;}
+.logo-title{display:flex;align-items:center;gap:10px;}
+.logo{height:60px;}
+.title-text h1{font-size:1.3rem;}
+.title-text p{font-size:0.8rem;}
+.login-search-section{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.search-bar{display:flex;align-items:center;position:relative;}
+.search-bar input{width:0;padding:8px 12px;border-radius:20px;border:1px solid #ccc;outline:none;opacity:0;transform:translateX(20px);transition:var(--transition);}
+.search-bar input:focus,.search-bar input.active{width:200px;opacity:1;transform:translateX(0);box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+.search-bar button{padding:8px;border-radius:50%;border:none;background:#fff;cursor:pointer;font-size:16px;transition:var(--transition);}
+.search-bar button:hover{background:var(--secondary);color:#fff;}
+.login-btn{border:2px solid #fff;color:#fff;padding:6px 12px;text-decoration:none;border-radius:6px;transition:var(--transition);}
+.login-btn:hover{background:#fff;color:var(--primary);}
+.navbar{background:#fff;position:sticky;top:0;z-index:999;box-shadow:0 2px 5px rgba(0,0,0,0.05);}
+.navbar ul{list-style:none;display:flex;justify-content:center;flex-wrap:wrap;}
+.navbar a{display:block;padding:12px 20px;color:#000;text-decoration:none;transition:var(--transition);}
+.navbar a:hover{background:var(--light);color:var(--primary);}
+.navbar li.dropdown>a::after{content:" ▼";font-size:0.7em;}
+.navbar li.dropdown ul.dropdown-menu{position:absolute;top:100%;left:0;min-width:180px;background:#fff;box-shadow:0 4px 8px rgba(0,0,0,0.1);opacity:0;visibility:hidden;transform:translateY(10px);transition:var(--transition);list-style:none;}
+.navbar li.dropdown:hover ul.dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
+
+.textbooks-page{display:flex;max-width:1200px;margin:40px auto;padding:0 20px;gap:30px;flex-wrap:wrap;}
+.sidebar{flex:1;max-width:200px;background:var(--light);padding:20px;border-radius:var(--radius);}
+.sidebar h2{font-size:1.1rem;color:var(--primary);margin-bottom:10px;}
+.sidebar ul{list-style:none;}
+.sidebar li{padding:10px;margin-bottom:5px;cursor:pointer;border-radius:6px;transition:var(--transition);}
+.sidebar li.active,.sidebar li:hover{background:var(--primary);color:#fff;}
+.main-content{flex:3;display:flex;flex-direction:column;gap:40px;}
+.page-heading{font-size:1.6rem;color:var(--primary);margin-bottom:20px;}
+.section-block{position:relative;background:#fff;border-radius:var(--radius);padding:18px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.section-title{font-size:1.3rem;color:var(--primary);}
+.carousel-wrapper{position:relative;overflow:hidden;}
+.carousel{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:calc((100% - 3 * 16px) / 4);
+  gap:16px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  scroll-snap-type:x mandatory;
+  padding-bottom:8px;
+}
+.book-card{
+  background:var(--light);
+  border-radius:var(--radius);
+  padding:10px;
+  text-align:center;
+  transition:var(--transition);
+  opacity:0;
+  transform:scale(0.95);
+  animation:fadeIn 0.4s ease-in forwards;
+  scroll-snap-align:start;
+}
+.book-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+.book-card img{width:140px;height:180px;object-fit:cover;border-radius:6px;margin-bottom:10px;}
+.book-card h3{font-size:1rem;color:var(--primary);margin-bottom:5px;}
+.book-card p{font-size:0.85rem;color:var(--text);}
+.carousel::-webkit-scrollbar{display:none;}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:var(--primary);color:#fff;border:none;width:35px;height:35px;border-radius:50%;cursor:pointer;transition:var(--transition);z-index:10;}
+.carousel-btn.left{left:-15px;}
+.carousel-btn.right{right:-15px;}
+.carousel-btn:hover{background:var(--secondary);}
+.view-btn{display:inline-block;margin-top:8px;padding:5px 10px;background:var(--primary);color:#fff;border-radius:4px;text-decoration:none;transition:var(--transition);}
+.view-btn:hover{background:var(--secondary);}
+@keyframes fadeIn{from{opacity:0;transform:scale(0.95);}to{opacity:1;transform:scale(1);} }
+
+footer{background:#111;color:#eee;padding:40px 20px 10px;}
+.footer-container{max-width:1200px;margin:auto;}
+.footer-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;}
+.footer-column h3{margin-bottom:10px;color:var(--secondary);}
+.footer-column ul{list-style:none;}
+.footer-column a{color:#ccc;text-decoration:none;transition:var(--transition);}
+.footer-column a:hover{color:#fff;}
+.footer-map iframe{border-radius:var(--radius);}
+.footer-bottom{text-align:center;margin-top:20px;font-size:0.85rem;color:#aaa;}
+.highlight{color:var(--secondary);}
+@media(max-width:768px){
+  .textbooks-page{flex-direction:column;}
+  .sidebar{max-width:100%;}
+  .carousel-btn.left{left:0;}
+  .carousel-btn.right{right:0;}
+}
+</style>
+</head>
+<body>
+<div class="loader-screen"><div class="loader"><img src="pciu.png" alt="PCIU Logo"></div></div>
+
+<header class="header">
+  <div class="top-bar">
+    <div class="logo-title">
+      <img src="bg.png" alt="PCIU Logo" class="logo">
+      <div class="title-text">
+        <h1>Ratnagarva Begum Ashrafunnesa Library</h1>
+        <p>Port City International University</p>
+      </div>
+    </div>
+    <div class="login-search-section">
+      <form class="search-bar" onsubmit="return false;">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button type="button" id="searchBtn">🔍</button>
+      </form>
+      <a href="login_prime.html" class="login-btn" id="loginBtn">LOGIN</a>
+    </div>
+  </div>
+</header>
+
+<nav class="navbar">
+  <ul>
+    <li><a href="destiny.html">Home</a></li>
+    <li class="dropdown">
+      <a href="#">Books</a>
+      <ul class="dropdown-menu">
+        <li><a href="test1.html">Textbooks</a></li>
+        <li><a href="ebook.html">E-Books</a></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a href="#">Download</a>
+      <ul class="dropdown-menu"><li><a href="#">Forms</a></li></ul>
+    </li>
+    <li class="dropdown">
+      <a href="#">About</a>
+      <ul class="dropdown-menu">
+        <li><a href="services.html">Library Hours & Services</a></li>
+        <li><a href="rule.html">Library Rules & Regulations</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<main class="textbooks-page">
+  <aside class="sidebar">
+    <h2>Departments</h2>
+    <ul id="deptList"></ul>
+  </aside>
+
+  <section class="main-content">
+    <h2 class="page-heading">Library Collections</h2>
+
+    <div class="section-block">
+      <div class="section-header"><h3 class="section-title">Textbooks</h3></div>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn left" data-target="booksCarousel">❮</button>
+        <div class="carousel" id="booksCarousel"></div>
+        <button class="carousel-btn right" data-target="booksCarousel">❯</button>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-header"><h3 class="section-title">Thesis Papers</h3></div>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn left" data-target="thesisCarousel">❮</button>
+        <div class="carousel" id="thesisCarousel"></div>
+        <button class="carousel-btn right" data-target="thesisCarousel">❯</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <div class="footer-column">
+        <h3>QUICK LINKS</h3>
+        <ul>
+          <li><a href="#">Press Release</a></li>
+          <li><a href="#">ICSDTIR-2021</a></li>
+          <li><a href="#">IQAC SURVEY</a></li>
+          <li><a href="#">Student Portal</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>CONNECT</h3>
+        <p>01851120791<br>01773225500<br>01773225511</p>
+        <p><a href="mailto:admission@portcity.edu.bd">admission@portcity.edu.bd</a></p>
+      </div>
+      <div class="footer-column">
+        <h3>LOCATION</h3>
+        <p>Administrative Building (Ground Floor)<br>
+        7-14, Nikunja Housing Society,<br>
+        South Khulshi, Chattogram</p>
+      </div>
+      <div class="footer-column footer-map">
+        <h3>FIND US</h3>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Port City International University. All Rights Reserved. Design & Maintenance by <span class="highlight">ICT Cell</span></p>
+  </div>
+</footer>
+
+<script>
+// loader
+window.addEventListener("load",()=>{document.querySelector(".loader-screen").style.display="none";});
+
+// sample department list
+const departments=["CSE","EEE","Civil","BBA","English","Law"];
+const deptList=document.getElementById("deptList");
+departments.forEach(d=>{
+  const li=document.createElement("li");
+  li.textContent=d;
+  deptList.appendChild(li);
+});
+
+// sample books and theses
+const sampleBooks=[
+  {img:"book1.jpg",title:"C Programming",desc:"By Dennis Ritchie"},
+  {img:"book2.jpg",title:"Data Structures",desc:"By Mark Allen Weiss"},
+  {img:"book3.jpg",title:"Operating Systems",desc:"By Silberschatz"},
+  {img:"book4.jpg",title:"Database System Concepts",desc:"By Korth"},
+  {img:"book5.jpg",title:"Computer Networks",desc:"By Tanenbaum"}
+];
+const sampleThesis=[
+  {img:"thesis1.jpg",title:"AI in Education",desc:"By Student A"},
+  {img:"thesis2.jpg",title:"IoT Applications",desc:"By Student B"},
+  {img:"thesis3.jpg",title:"Blockchain Security",desc:"By Student C"},
+  {img:"thesis4.jpg",title:"Smart City Analysis",desc:"By Student D"},
+  {img:"thesis5.jpg",title:"Data Mining",desc:"By Student E"}
+];
+
+function loadCarousel(id,data){
+  const container=document.getElementById(id);
+  data.forEach(item=>{
+    const div=document.createElement("div");
+    div.className="book-card";
+    div.innerHTML=`
+      <img src="${item.img}" alt="${item.title}">
+      <h3>${item.title}</h3>
+      <p>${item.desc}</p>
+      <a href="#" class="view-btn">View</a>`;
+    container.appendChild(div);
+  });
+}
+loadCarousel("booksCarousel",sampleBooks);
+loadCarousel("thesisCarousel",sampleThesis);
+
+// carousel buttons
+document.querySelectorAll(".carousel-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const target=document.getElementById(btn.dataset.target);
+    const cardWidth=target.querySelector(".book-card").offsetWidth+16;
+    target.scrollBy({
+      left:btn.classList.contains("left")?-cardWidth*4:cardWidth*4,
+      behavior:"smooth"
+    });
+  });
+});
+</script>
+</body>
+</html>

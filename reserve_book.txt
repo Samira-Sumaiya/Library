@@ -1,0 +1,16 @@
+<?php
+include "db.php";
+
+$user_id = $_POST['user_id'];
+$book_id = $_POST['book_id'];
+
+$sql = "INSERT INTO reservations (user_id, book_id) VALUES (?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ii", $user_id, $book_id);
+
+if ($stmt->execute()) {
+    echo "reservation_success";
+} else {
+    echo "reservation_failed";
+}
+?>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCIU Central Library - Services</title>
+<link rel="stylesheet" href="services.css">
+</head>
+<body>
+
+<!-- Loader Animation -->
+<div class="loader-screen">
+    <div class="loader">
+        <img src="pciu.png" alt="PCIU Logo">
+    </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+  <div class="top-bar">
+    <div class="logo-title">
+      <img src="bg.png" alt="PCIU Logo" class="logo">
+      <div class="title-text">
+        <h1>Ratnagarva Begum Ashrafunnesa Library</h1>
+        <p>Port City International University</p>
+      </div>
+    </div>
+    <div class="login-search-section">
+      <a href="login_prime.html" class="login-btn" id="loginBtn">LOGIN</a>
+    </div>
+  </div>
+</header>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+    <ul>
+        <li><a href="destiny.html">Home</a></li>
+        <li class="dropdown">
+            <a href="#">Books</a>
+            <ul class="dropdown-menu">
+                <li><a href="test1.html">Textbooks</a></li>
+                <li><a href="ebook.html">E-Books</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Download</a>
+            <ul class="dropdown-menu">
+                <li><a href="https://drive.google.com/file/d/1uJgGPKmt10RgI21_sARMFu-WWm19jaKS/view?usp=drivesdk">Forms</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">About</a>
+            <ul class="dropdown-menu">
+                <li><a href="services.html">Library Hours & Services</a></li>
+                <li><a href="rule.html">Library Rules & Regulations</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<!-- Main Content -->
+<main class="library-page">
+    <section class="library-services">
+	    <h1>Library Hours</h1>
+		<ul>
+		    <li class="library-hours">
+                <strong>Library Hours:</strong> Monday - Friday: 8:00 AM - 8:00 PM, Saturday: 9:00 AM - 5:00 PM
+            </li>
+		</ul>
+        <h1>Library Services</h1>
+        <ul>
+            <li>1. Book Lending Services for students and faculty</li>
+            <li>2. Access to E-Books and Online Journals</li>
+            <li>3. Reference and Research Assistance</li>
+            <li>4. Study Rooms and Computer Access</li>
+            <li>5. Workshops and Information Literacy Sessions</li>
+        </ul>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <div class="footer-column">
+        <h3>QUICK LINKS</h3>
+        <ul>
+          <li><a href="#">Press Release</a></li>
+          <li><a href="#">ICSDTIR-2021</a></li>
+          <li><a href="#">IQAC SURVEY</a></li>
+          <li><a href="#">Student Portal</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>CONNECT</h3>
+        <p>01851120791<br>01773225500<br>01773225511</p>
+        <p><a href="mailto:admission@portcity.edu.bd">admission@portcity.edu.bd</a></p>
+      </div>
+      <div class="footer-column">
+        <h3>LOCATION</h3>
+        <p>Administrative Building (Ground Floor)<br>
+        7-14, Nikunja Housing Society,<br>
+        South Khulshi, Chattogram</p>
+      </div>
+    </div>
+    <div class="footer-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14759.371442579371!2d91.8025863!3d22.359561499999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acd97f972c9cbf%3A0x8fe976105b47e2f0!2sPort%20City%20International%20University!5e0!3m2!1sen!2sbd!4v1755597692047!5m2!1sen!2sbd"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Port City International University. All Rights Reserved. Design, Development and Maintenance by <span class="highlight">ICT Cell</span></p>
+  </div>
+</footer>
+
+<script>
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        document.querySelector(".loader-screen").style.display = "none";
+    }, 2000);
+});
+
+document.getElementById("loginBtn").addEventListener("click", function(event) {
+    event.preventDefault(); 
+    document.querySelector(".loader-screen").style.display = "flex"; 
+    setTimeout(() => {
+        window.location.href = this.getAttribute("href");
+    }, 2000);
+});
+</script>
+
+</body>
+</html>
